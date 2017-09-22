@@ -23,7 +23,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set any additional class parameters as needed
-        self.N = 0
+        self.N = 1
 
     def reset(self, destination=None, testing=False):
         """ The reset function is called at the beginning of each trial.
@@ -55,7 +55,9 @@ class LearningAgent(Agent):
             
             # E = 1/(Number of trails ^2) - Safety - D and Reliability - D
             # self.epsilon = 1.0/self.N**2
-            self.epsilon = math.exp(-self.alpha * self.N)
+
+            # Epsilon - 0.01 Reliability - A+ and Safety A+
+            self.epsilon = math.exp(-self.alpha * self.N) 
 
             # self.epsilon = self.alpha ** self.N
 
@@ -196,7 +198,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning = True, epsilon = 1, alpha = 0.01)
+    agent = env.create_agent(LearningAgent, learning = True, epsilon = 1.0, alpha = 0.01)
     
     ##############
     # Follow the driving agent
